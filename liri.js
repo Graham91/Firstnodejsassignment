@@ -29,8 +29,12 @@ if(answers.searchtype === 'spotify-this-song')
             if (err) {
               return console.log('Error occurred: ' + err);
             }
-           
-          console.log(data); 
+            
+          console.log("Song Name: " + data.tracks.items[0].name);
+          console.log("Artist: " + data.tracks.items[0].artists[0].name);
+          console.log("Album: " + data.tracks.items[0].album.name);
+          console.log("check out Song at this URL: " +
+           data.tracks.items[0].external_urls.spotify);
           });
     })
 }

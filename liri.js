@@ -11,7 +11,7 @@ inquirer.prompt([
         type: 'list',
         name: 'searchtype',
         message: 'choose your search Type',
-        choices: ['spotify-this-song', 'movie-this','concert-this',]
+        choices: ['spotify-this-song', 'movie-this','concert-this','Use Document']
       }
 
   ]).then(answers => {
@@ -67,6 +67,25 @@ else if(answers.searchtype === 'movie-this')
     });
 
 })
+}
+else if(answers.searchtype === 'Use Document'){
+  {inquirer.prompt([
+    {
+      name: 'filepath',
+      message: 'Enter desired file path:',
+      
+    },]).then(answers => { 
+      
+      var newFilePath = answers.filepath;
+      console.log(newFilePath);
+     const fs = require('fs');
+      fs.readFile(newFilePath, (err, data) => { 
+        if (err) throw err; 
+      
+        console.log(data.toString()); 
+    }) 
+    })
+}
 }
 else
 {inquirer.prompt([

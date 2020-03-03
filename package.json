@@ -1,0 +1,27 @@
+{
+  "name": "Firstnodejsassignment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "program.js",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "inquirer": "^7.0.5",
+    "node-spotify-api": "^1.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Graham91/Firstnodejsassignment.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Graham91/Firstnodejsassignment/issues"
+  },
+  "homepage": "https://github.com/Graham91/Firstnodejsassignment#readme"
+}

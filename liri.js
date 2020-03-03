@@ -52,7 +52,18 @@ else if(answers.searchtype === 'movie-this')
         method: 'get',
         url:"http://www.omdbapi.com/?apikey=daba8cc8&"+"s=" + answers.movietitle,
       }).then(function (response) {
-        console.log(response.data.Search[0].Title);
+        console.log("Movie Title: "+response.data.Search[0].Title);
+        console.log("Year: "+response.data.Search[0].Year);
+
+      //   * Title of the movie.
+      //  * Year the movie came out.
+      //  * IMDB Rating of the movie.
+      //  * Rotten Tomatoes Rating of the movie.
+      //  * Country where the movie was produced.
+      //  * Language of the movie.
+      //  * Plot of the movie.
+      //  * Actors in the movie.
+
     });
 
 })
@@ -69,8 +80,29 @@ else
         method: 'get',
         url: "https://rest.bandsintown.com/artists/" + answers.concert + "/events?app_id=codingbootcamp",
       }).then(function (response) {
+        var moment = require('moment');
+         var time1 = moment(response.data[0].datetime).format("MM/DD/YYYY");
+         var time2 = moment(response.data[1].datetime).format("MM/DD/YYYY");
+         var time3 = moment(response.data[2].datetime).format("MM/DD/YYYY");
+
+
+    console.log("Date: "+time1);
+    console.log("Venue: " + response.data[0].venue.name)
+    console.log("Venue Location: " +response.data[0].venue.city + ", "+  response.data[0].venue.country)
+    console.log("----------------------");
+    console.log("Date: "+time2);
+    console.log("Venue: " + response.data[1].venue.name)
+    console.log("Venue Location: " +response.data[1].venue.city + ", "+  response.data[1].venue.country)
+    console.log("----------------------");
+    console.log("Date: "+time3);
+    console.log("Venue: " + response.data[2].venue.name)
+    console.log("Venue Location: " +response.data[2].venue.city + ", "+  response.data[2].venue.country)
     
-    console.log(response.data[1].venue)
+    // * Name of the venue
+
+    // * Venue location
+
+    // * Date of the Event (use moment to format this as "MM/DD/YYYY")
     });
 })
 }

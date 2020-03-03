@@ -39,11 +39,53 @@
 inquirer
   .prompt([
     {
-        type: 'input',
-        name: 'someOtherInput',
-        message: 'Just show me the output'
+        type: 'list',
+        name: 'searchtype',
+        message: 'choose your search Type',
+        choices: ['spotify-this-song', 'movie-this','concert-this',]
       }
+
   ])
-  .then(answers => {console.log("hi")
+  .then(answers => {
+      if(answers.searchtype === 'spotify-this-song')
+      {inquirer
+        .prompt([
+            {
+              name: 'spotifysong',
+              message: 'Find a song on spotify by typing it in:',
+              
+            },
+  
+    ]).then(answers => {
+        console.log('Answer:', answers.spotifysong);
+    })
+}
+else if(answers.searchtype === 'movie-this')
+{inquirer
+    .prompt([
+        {
+          name: 'movietitle',
+          message: 'Search IMDB by typing in a movie name:',
+          
+        },
+
+]).then(answers => {
+    console.log('Answer:', answers.movietitle);
+})
+}
+else
+{inquirer
+    .prompt([
+        {
+          name: 'concert',
+          message: 'Type in an artist you want to see in Concert:',
+        },
+]).then(answers => {
+    console.log('Answer:', answers.concert);
+})
+}
+    
+
+
     // Use user feedback for... whatever!!
   })

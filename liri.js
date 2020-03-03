@@ -1,38 +1,9 @@
-// require("dotenv").config();
-// var keys = require("./keys.js");
-// var Spotify = require('node-spotify-api');
-// var spotify = new Spotify(keys.spotify);
+require("dotenv").config();
+var keys = require("./keys.js");
+var Spotify = require('node-spotify-api');
+var spotify = new Spotify(keys.spotify);
+var axios = require("axios");
 
- 
-
- 
-// spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
-//   if (err) {
-//     return console.log('Error occurred: ' + err);
-//   }
- 
-// console.log(data); 
-// });
-
-// var axios = require("axios");
-
-// // URL: "http://www.omdbapi.com/?apikey=daba8cc8"& 
-// console.log(process.argv[2]);
-// console.log(process.argv[3]);
-// axios({
-//         method: 'get',
-//         url: "https://rest.bandsintown.com/artists/" + "TaylorSwift" + "/events?app_id=codingbootcamp",
-//       }).then(function (response) {
-    
-//     console.log(response.data[1].venue)
-//     });
-
-// axios({
-//         method: 'get',
-//         url:"http://www.omdbapi.com/?apikey=daba8cc8&"+"s=hitch",
-//       }).then(function (response) {
-//         console.log(response.data.Search[0].Title);
-//     });
 
 
     var inquirer = require('inquirer');
@@ -58,6 +29,13 @@ inquirer
   
     ]).then(answers => {
         console.log('Answer:', answers.spotifysong);
+        spotify.search({ type: 'track', query: answers.spotifysong }, function(err, data) {
+            if (err) {
+              return console.log('Error occurred: ' + err);
+            }
+           
+          console.log(data); 
+          });
     })
 }
 else if(answers.searchtype === 'movie-this')
@@ -71,6 +49,13 @@ else if(answers.searchtype === 'movie-this')
 
 ]).then(answers => {
     console.log('Answer:', answers.movietitle);
+    axios({
+        method: 'get',
+        url:"http://www.omdbapi.com/?apikey=daba8cc8&"+"s=" + answers.movietitle,
+      }).then(function (response) {
+        console.log(response.data.Search[0].Title);
+    });
+
 })
 }
 else
@@ -82,10 +67,15 @@ else
         },
 ]).then(answers => {
     console.log('Answer:', answers.concert);
+    axios({
+        method: 'get',
+        url: "https://rest.bandsintown.com/artists/" + answers.concert + "/events?app_id=codingbootcamp",
+      }).then(function (response) {
+    
+    console.log(response.data[1].venue)
+    });
 })
 }
     
 
-
-    // Use user feedback for... whatever!!
   })

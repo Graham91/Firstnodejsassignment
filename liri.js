@@ -3,12 +3,10 @@ var keys = require("./keys.js");
 var Spotify = require('node-spotify-api');
 var spotify = new Spotify(keys.spotify);
 var axios = require("axios");
+var inquirer = require('inquirer');
 
 
-
-    var inquirer = require('inquirer');
-inquirer
-  .prompt([
+inquirer.prompt([
     {
         type: 'list',
         name: 'searchtype',
@@ -16,11 +14,9 @@ inquirer
         choices: ['spotify-this-song', 'movie-this','concert-this',]
       }
 
-  ])
-  .then(answers => {
-      if(answers.searchtype === 'spotify-this-song')
-      {inquirer
-        .prompt([
+  ]).then(answers => {
+if(answers.searchtype === 'spotify-this-song')
+      {inquirer.prompt([
             {
               name: 'spotifysong',
               message: 'Find a song on spotify by typing it in:',
@@ -39,8 +35,7 @@ inquirer
     })
 }
 else if(answers.searchtype === 'movie-this')
-{inquirer
-    .prompt([
+{inquirer.prompt([
         {
           name: 'movietitle',
           message: 'Search IMDB by typing in a movie name:',
@@ -59,8 +54,7 @@ else if(answers.searchtype === 'movie-this')
 })
 }
 else
-{inquirer
-    .prompt([
+{inquirer.prompt([
         {
           name: 'concert',
           message: 'Type in an artist you want to see in Concert:',
@@ -76,6 +70,4 @@ else
     });
 })
 }
-    
-
-  })
+})
